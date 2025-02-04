@@ -5,7 +5,7 @@ Admin Details:
 admin:admin
 
 Note: For security reasons, app.py has been obfuscated.
-
+Demo:http://restoransite.pythonanywhere.com/
 
 
 
