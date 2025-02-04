@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="tr">
+    <head>
+        <meta charset="utf-8">
+        <title>Restoran</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="Ücretsiz Web Sitesi Şablonu" name="keywords">
+        <meta content="Ücretsiz Web Sitesi Şablonu" name="description">
+
+        <link href="{{ url_for('static', filename='img/favicon.ico') }}" rel="icon">
+
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400|Nunito:600,700" rel="stylesheet"> 
+        
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+        <link href="{{ url_for('static', filename='lib/animate/animate.min.css') }}" rel="stylesheet">
+        <link href="{{ url_for('static', filename='lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
+        <link href="{{ url_for('static', filename='lib/flaticon/font/flaticon.css') }}" rel="stylesheet">
+        <link href="{{ url_for('static', filename='lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css') }}" rel="stylesheet" />
+        <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+    </head>
+
+    <body>
+        <div class="navbar navbar-expand-lg bg-light navbar-light">
+            <div class="container-fluid">
+                <a href="index" class="navbar-brand">Restoran <span> </span></a>
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                    <div class="navbar-nav ml-auto">
+                        <a href="index" class="nav-item nav-link active">Əsas Səhifə</a>
+                        <a href="team" class="nav-item nav-link">Aşpazlar</a>
+                        <a href="menu" class="nav-item nav-link">Menyu</a>
+                        <a href="booking" class="nav-item nav-link">Rezervasiya</a>
+                        <a href="contact" class="nav-item nav-link">Əlaqə</a>
+                    
+                        {% if session.get('user_id') %}
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+                                    <img src="{{ url_for('static', filename='img/profile_icon.png') }}" alt="Profil" width="30" height="30" class="rounded-circle">
+                                </a>
+                                <div class="dropdown-menu">
+                                    <a href="{{ url_for('profile') }}" class="dropdown-item">Profilim</a>
+                                    <a href="{{ url_for('logout') }}" class="dropdown-item">Çıxış Et</a>
+                                </div>
+                            </div>
+                        {% else %}
+                            <a href="{{ url_for('login') }}" class="nav-item nav-link">Giriş Et</a>
+                            <a href="{{ url_for('register') }}" class="nav-item nav-link">Qeydiyyat</a>
+                        {% endif %}
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+
+        <div class="carousel">
+            <div class="container-fluid">
+                <div class="owl-carousel">
+                    <div class="carousel-item">
+                        <div class="carousel-img">
+                            <img src="{{ url_for('static', filename='img/carousel-1.jpg') }}" alt="Image">
+                        </div>
+                        <div class="carousel-text">
+                            <h1>Yüksək <span>Keyfiyyətdə</span> Ərzaqlar</h1>
+                            <p>
+                                Lorem ipsum dolor sit amet elit. Phasellus ut mollis mauris. Vivamus egestas eleifend dui ac consequat at lectus in malesuada
+                            </p>
+                            <div class="carousel-btn">
+                                <a class="btn custom-btn" href="menu">Menyumuz</a>
+                                <a class="btn custom-btn" href="booking">Rezervasiya Et</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="carousel-img">
+                            <img src="{{ url_for('static', filename='img/carousel-2.jpg') }}" alt="Image">
+                        </div>
+                        <div class="carousel-text">
+                            <h1>Ən Yaxşı <span>Aşpazlar</span> </h1>
+                            <p>
+                                Morbi sagittis turpis id suscipit feugiat. Suspendisse eu augue urna. Morbi sagittis, orci sodales varius fermentum, tortor
+                            </p>
+                            <div class="carousel-btn">
+                                <a class="btn custom-btn" href="menu">Menyumuz</a>
+                                <a class="btn custom-btn" href="booking">Reservasiya Et</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="carousel-img">
+                            <img src="{{ url_for('static', filename='img/carousel-3.jpg') }}" alt="Image">
+                            </div>
+                        <div class="carousel-text">
+                            <h1>Etibarlı <span>Rezervasiya</span> Sistemi</h1>
+                            <p>
+                                Sed ultrices, est eget feugiat accumsan, dui nibh egestas tortor, ut rhoncus nibh ligula euismod quam. Proin pellentesque odio
+                            </p>
+                            <div class="carousel-btn">
+                                <a class="btn custom-btn" href="menu">Menyumuz</a>
+                                <a class="btn custom-btn" href="booking">Rezervasiya Et</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+
+        <div class="about">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <div class="about-img">
+                            <img src="{{ url_for('static', filename='img/about.jpg') }}" alt="Image">
+                            <button type="button" class="btn-play" data-toggle="modal" data-src="https://www.youtube.com/embed/DWRcNpR6Kdc" data-target="#videoModal">
+                                <span></span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="about-content">
+                            <div class="section-header">
+                                <p>Haqqımızda</p>
+                                <h2>Uzunmüddətli Xidmət</h2>
+                            </div>
+                            <div class="about-text">
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec pretium mi. Curabitur facilisis ornare velit non vulputate. Aliquam metus tortor, auctor id gravida condimentum, viverra quis sem.
+                                </p>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec pretium mi. Curabitur facilisis ornare velit non vulputate. Aliquam metus tortor, auctor id gravida condimentum, viverra quis sem. Curabitur non nisl nec nisi scelerisque maximus. Aenean consectetur convallis porttitor. Aliquam interdum at lacus non blandit.
+                                </p>
+                                <a class="btn custom-btn" href="booking">Rezervasiya Et</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="modal fade" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>        
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <iframe class="embed-responsive-item" src="" id="video"  allowscriptaccess="always" allow="autoplay"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+        
+        
+        <div class="feature">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-5">
+                        <div class="section-header">
+                            <p>Niyə Bizi Seçməlisiniz? </p>
+                            <h2>Bizim <span style="color: orange;">Üstünlüklərimiz</span></h2>
+                        </div>
+                        <div class="feature-text">
+                            <div class="feature-img">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <img src="{{ url_for('static', filename='img/feature-1.jpg') }}" alt="Image">
+                                    </div>
+                                    <div class="col-6">
+                                        <img src="{{ url_for('static', filename='img/feature-2.jpg') }}" alt="Image">
+                                    </div>
+                                    <div class="col-6">
+                                        <img src="{{ url_for('static', filename='img/feature-3.jpg') }}" alt="Image">
+                                    </div>
+                                    <div class="col-6">
+                                        <img src="{{ url_for('static', filename='img/feature-4.jpg') }}" alt="Image">
+                                    </div>
+                                </div>
+                            </div>
+                            <p>
+                                Lorem ipsum dolor sit amet consec adipis elit. Phasel nec preti mi. Curabit facilis ornare velit non vulputa. Aliquam metus tortor, auctor id gravida condime, viverra quis sem. Curabit non nisl nec nisi sceleri maximus 
+                            </p>
+                            <a class="btn custom-btn" href="booking">Rezervasiya Et</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-7">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="feature-item">
+                                    <i class="flaticon-cooking"></i>
+                                    <h3>Ən Yaxşı Aşpazlar</h3>
+                                    <p>
+                                        Lorem ipsum dolor sit amet elit. Phasel nec preti mi. Curabit facilis ornare velit non vulput metus tortor
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="feature-item">
+                                    <i class="flaticon-vegetable"></i>
+                                    <h3> Təbii Ərzaqlar</h3>
+                                    <p>
+                                        Lorem ipsum dolor sit amet elit. Phasel nec preti mi. Curabit facilis ornare velit non vulput metus tortor
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="feature-item">
+                                    <i class="flaticon-medal"></i>
+                                    <h3>Yüksək Keyfiyyətli Ərzaqlar</h3>
+                                    <p>
+                                        Lorem ipsum dolor sit amet elit. Phasel nec preti mi. Curabit facilis ornare velit non vulput metus tortor
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="feature-item">
+                                    <i class="flaticon-meat"></i>
+                                    <h3>Yeni Tərəvəzlər</h3>
+                                    <p>
+                                        Lorem ipsum dolor sit amet elit. Phasel nec preti mi. Curabit facilis ornare velit non vulput metus tortor
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="feature-item">
+                                    <i class="flaticon-courier"></i>
+                                    <h3>Etibarlı Rezervasiya Sistemi</h3>
+                                    <p>
+                                        Lorem ipsum dolor sit amet elit. Phasel nec preti mi. Curabit facilis ornare velit non vulput metus tortor
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="feature-item">
+                                    <i class="flaticon-fruits-and-vegetables"></i>
+                                    <h3>Ət Məhsulları</h3>
+                                    <p>
+                                        Lorem ipsum dolor sit amet elit. Phasel nec preti mi. Curabit facilis ornare velit non vulput metus tortor
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+        <style>
+            .footer {
+        background-color: rgba(0, 0, 0, .04);
+        color: #454545;
+        padding: 50px 0;
+        text-align: left;
+    }
+    
+    .footer .container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    
+    .footer h2 {
+        font-size: 1.8em;
+        color: #fbaf32;
+        margin-bottom: 20px;
+    }
+    
+    .footer p, .footer a {
+        color: #fff;
+        font-size: 1.1em;
+        margin-bottom: 15px;
+    }
+    
+    .footer a {
+        display: block;
+        text-decoration: none;
+    }
+    
+    .footer .footer-social a {
+        font-size: 16px;
+        margin-right: 15px;
+        color: #fff;
+    }
+    
+    .footer .footer-social a:hover {
+        color: #fbaf32;
+    }
+    
+    .footer .footer-link a {
+        font-size: 16px;
+        color: #454545;
+        display: block;
+        text-decoration: none;
+    }
+    
+    .footer .footer-link a:hover {
+        color: #fbaf32;
+    }
+    
+    .footer .opening-hours ul {
+        list-style: none;
+        padding: 0;
+    }
+    
+    .footer .opening-hours ul li {
+        font-size: 1.2em;
+        margin-bottom: 10px;
+    }
+    
+    .footer .opening-hours .description {
+        font-size: 1.1em;
+        margin-bottom: 15px;
+    }
+    
+    .footer .opening-hours .closing-note {
+        font-size: 1.1em;
+        font-style: italic;
+    }
+    
+    @media (max-width: 991px) {
+        .footer .row {
+            flex-direction: column;
+        }
+        .footer .col-lg-7, .footer .col-lg-5 {
+            width: 100%;
+            margin-bottom: 30px;
+        }
+    }
+    
+           </style>
+            <div class="footer">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-7">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="footer-contact">
+                                        <h2>Ünvanımız</h2>
+                                        <p style="color: #454545;"><i class="fa fa-map-marker-alt"></i> 123 Street, New York, USA</p>
+                                        <p style="color: #454545;"><i class="fa fa-phone-alt" ></i> +012 345 67890</p>
+                                        <p style="color: #454545;"><i class="fa fa-envelope"></i> info@example.com</p>
+                                        <div class="footer-social">
+                                            <a href=""><i class="fab fa-twitter"></i></a>
+                                            <a href=""><i class="fab fa-facebook-f"></i></a>
+                                            <a href=""><i class="fab fa-youtube"></i></a>
+                                            <a href=""><i class="fab fa-instagram"></i></a>
+                                            <a href=""><i class="fab fa-linkedin-in"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+            
+                                <div class="col-md-6">
+                                    <div class="footer-link">
+                                        <h2>Cəld Keçidlər</h2>
+                                        <a href="team">Aşpazlar</a>
+                                        <a href="menu">Menyu</a>
+                                        <a href="booking">Rezervasiya</a>
+                                        <a href="contact">Əlaqə</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <div class="col-lg-5">
+                            <div class="opening-hours">
+                                <h2>Xidmət Saatlarımız !</h2>
+                                <ul class="hours-list">
+                                    <li><strong>Bazar ertəsi - Cümə:</strong> 08:00  - 10:00 </li>
+                                    <li><strong>Şənbə:</strong> 10:00  - 12:00 </li>
+                                    <li><strong>Bazar:</strong> 10:00  - 12:00 </li>
+                                </ul>
+                            </div>
+                        </div>
+            
+                    </div>
+                </div>
+            </div>
+            
+                
+            </div>
+        
+
+        <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+<script src="{{ url_for('static', filename='lib/easing/easing.min.js') }}"></script>
+<script src="{{ url_for('static', filename='lib/owlcarousel/owl.carousel.min.js') }}"></script>
+<script src="{{ url_for('static', filename='lib/tempusdominus/js/moment.min.js') }}"></script>
+<script src="{{ url_for('static', filename='lib/tempusdominus/js/moment-timezone.min.js') }}"></script>
+<script src="{{ url_for('static', filename='lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js') }}"></script>
+
+<script src="{{ url_for('static', filename='mail/jqBootstrapValidation.min.js') }}"></script>
+<script src="{{ url_for('static', filename='mail/contact.js') }}"></script>
+
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+    </body>
+</html>

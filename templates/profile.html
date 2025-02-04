@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil</title>
+
+        <link href="{{ url_for('static', filename='img/favicon.ico') }}" rel="icon">
+
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400|Nunito:600,700" rel="stylesheet"> 
+        
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+        <link href="{{ url_for('static', filename='lib/animate/animate.min.css') }}" rel="stylesheet">
+        <link href="{{ url_for('static', filename='lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
+        <link href="{{ url_for('static', filename='lib/flaticon/font/flaticon.css') }}" rel="stylesheet">
+        <link href="{{ url_for('static', filename='lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css') }}" rel="stylesheet" />
+        <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+        }
+
+        .card {
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-top: 40px; 
+            display: flex;
+            flex-direction: row;
+            max-width: 1200px; 
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 25px;
+        }
+
+        .user-profile {
+            background: linear-gradient(to right, #fbaf32, #feb47b);
+            color: white;
+            text-align: center;
+            padding: 50px 30px; 
+            border-radius: 10px 0 0 10px;
+            width: 350px;
+        }
+
+        .user-profile img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 4px solid #fff;
+            margin-bottom: 20px;
+        }
+
+        .user-profile h4 {
+            font-size: 2rem; 
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .user-profile p {
+            font-size: 1.2rem; 
+            margin-bottom: 20px;
+        }
+
+        .card-body {
+            padding: 40px; 
+            width: 100%;
+           
+        }
+
+        .card-body h5 {
+            font-size: 1.75rem; 
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .card-body p {
+            font-size: 1.1rem; 
+            color: #333;
+            line-height: 1.6; 
+            margin-bottom: 10px;
+        }
+
+        .social-links a {
+            font-size: 2rem;
+            margin: 0 15px;
+            color: #333;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #ff7e5f;
+        }
+
+        .btn-primary {
+            background-color: #fbaf32;
+            border-color: #fbaf32;
+            color: white;
+            font-weight: bold;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: block;
+            margin: 20px auto 0;
+        }
+
+        .btn-primary:hover {
+            background-color: #feb47b;
+            border-color: #feb47b;
+        }
+    </style>
+</head>
+<body>
+
+
+       
+    <div class="navbar navbar-expand-lg bg-light navbar-light">
+        <div class="container-fluid">
+            <a href="index" class="navbar-brand">Restoran <span> </span></a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                <div class="navbar-nav ml-auto">
+                    <a href="index" class="nav-item nav-link">Əsas Səhifə</a>
+                    <a href="team" class="nav-item nav-link">Aşpazlar</a>
+                    <a href="menu" class="nav-item nav-link">Menyu</a>
+                    <a href="booking" class="nav-item nav-link">Rezervasiya</a>
+                    <a href="contact" class="nav-item nav-link">Əlaqə</a>
+                
+                    {% if session.get('user_id') %}
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+                                <img src="{{ url_for('static', filename='img/profile_icon.png') }}" alt="Profil" width="30" height="30" class="rounded-circle">
+                            </a>
+                            <div class="dropdown-menu">
+                                <a href="{{ url_for('profile') }}" class="dropdown-item">Profilim</a>
+                                <a href="{{ url_for('logout') }}" class="dropdown-item">Çıxış Et</a>
+                            </div>
+                        </div>
+                    {% else %}
+                        <a href="{{ url_for('login') }}" class="nav-item nav-link">Giriş Et</a>
+                        <a href="{{ url_for('register') }}" class="nav-item nav-link">Qeydiyyat</a>
+                    {% endif %}
+                </div>
+                
+            </div>
+        </div>
+    </div>
+            </div>
+        </div>
+        
+        <div class="page-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h2>Profil</h2>
+                    </div>
+                    <div class="col-12">
+                        <a href="">Əsas Səhifə</a>
+                        <a href="">Profil</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="card">
+                <div class="user-profile">
+                    <img src="https://img.icons8.com/bubbles/100/000000/user.png" alt="User Image">
+                    <h4>{{ user.first_name }} {{ user.last_name }}</h4>
+                    <p>Müştəri</p>
+                    <div class="social-links">
+                        <a href="#" title="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <h5>Xoş Gəlmisiniz !</h5>
+                    <p><strong>Adınız:</strong> {{ user.first_name }}</p>
+                    <p><strong>Soyadınız:</strong> {{ user.last_name }}</p>
+                    <h5>Məlumatlarınız</h5>
+                    <p><strong>Email:</strong> {{ user.email}}</p>
+                    <p><strong>Telefon Nömrəniz:</strong> {{ user.phone}}</p>
+                    <a href="booking" class="btn btn-primary">Rezervasiya Et</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<style>
+    .footer {
+background-color: rgba(0, 0, 0, .04);
+color: #454545;
+padding: 50px 0;
+text-align: left;
+}
+
+.footer .container {
+max-width: 1200px;
+margin: 0 auto;
+}
+
+.footer h2 {
+font-size: 1.8em;
+color: #fbaf32;
+margin-bottom: 20px;
+}
+
+.footer p, .footer a {
+color: #fff;
+font-size: 1.1em;
+margin-bottom: 15px;
+}
+
+.footer a {
+display: block;
+text-decoration: none;
+}
+
+.footer .footer-social a {
+font-size: 16px;
+margin-right: 15px;
+color: #fff;
+}
+
+.footer .footer-social a:hover {
+color: #fbaf32;
+}
+
+.footer .footer-link a {
+font-size: 16px;
+color: #454545;
+display: block;
+text-decoration: none;
+}
+
+.footer .footer-link a:hover {
+color: #fbaf32;
+}
+
+.footer .opening-hours ul {
+list-style: none;
+padding: 0;
+}
+
+.footer .opening-hours ul li {
+font-size: 1.2em;
+margin-bottom: 10px;
+}
+
+.footer .opening-hours .description {
+font-size: 1.1em;
+margin-bottom: 15px;
+}
+
+.footer .opening-hours .closing-note {
+font-size: 1.1em;
+font-style: italic;
+}
+
+@media (max-width: 991px) {
+.footer .row {
+    flex-direction: column;
+}
+.footer .col-lg-7, .footer .col-lg-5 {
+    width: 100%;
+    margin-bottom: 30px;
+}
+}
+
+   </style>
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="footer-contact">
+                                <h2>Ünvanımız</h2>
+                                <p style="color: #454545;"><i class="fa fa-map-marker-alt"></i> 123 Street, New York, USA</p>
+                                <p style="color: #454545;"><i class="fa fa-phone-alt" ></i> +012 345 67890</p>
+                                <p style="color: #454545;"><i class="fa fa-envelope"></i> info@example.com</p>
+                                <div class="footer-social">
+                                    <a href=""><i class="fab fa-twitter"></i></a>
+                                    <a href=""><i class="fab fa-facebook-f"></i></a>
+                                    <a href=""><i class="fab fa-youtube"></i></a>
+                                    <a href=""><i class="fab fa-instagram"></i></a>
+                                    <a href=""><i class="fab fa-linkedin-in"></i></a>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="col-md-6">
+                            <div class="footer-link">
+                                <h2>Cəld Keçidlər</h2>
+                                <a href="team">Aşpazlar</a>
+                                <a href="menu">Menyu</a>
+                                <a href="booking">Rezervasiya</a>
+                                <a href="contact">Əlaqə</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="col-lg-5">
+                    <div class="opening-hours">
+                        <h2>Xidmət Saatlarımız !</h2>
+                        <ul class="hours-list">
+                            <li><strong>Bazar ertəsi - Cümə:</strong> 08:00  - 10:00 </li>
+                            <li><strong>Şənbə:</strong> 10:00  - 12:00 </li>
+                            <li><strong>Bazar:</strong> 10:00  - 12:00 </li>
+                        </ul>
+                    </div>
+                </div>
+    
+            </div>
+        </div>
+    </div>
+    
+        
+    </div>
+        <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+             <script src="{{ url_for('static', filename='js/jquery-3.4.1.min.js') }}"></script>
+             <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+             <script src="{{ url_for('static', filename='lib/easing/easing.min.js') }}"></script>
+             <script src="{{ url_for('static', filename='lib/owlcarousel/owl.carousel.min.js') }}"></script>
+             <script src="{{ url_for('static', filename='lib/tempusdominus/js/moment.min.js') }}"></script>
+             <script src="{{ url_for('static', filename='lib/tempusdominus/js/moment-timezone.min.js') }}"></script>
+             <script src="{{ url_for('static', filename='lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js') }}"></script>
+             
+             <script src="{{ url_for('static', filename='mail/jqBootstrapValidation.min.js') }}"></script>
+             <script src="{{ url_for('static', filename='mail/contact.js') }}"></script>
+             
+             <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

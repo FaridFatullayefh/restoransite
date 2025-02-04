@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Restoran</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="Free Website Template" name="keywords">
+        <meta content="Free Website Template" name="description">
+
+        <link href="{{ url_for('static', filename='img/favicon.ico') }}" rel="icon">
+
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400|Nunito:600,700" rel="stylesheet"> 
+
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+        <link href="{{ url_for('static', filename='lib/animate/animate.min.css') }}" rel="stylesheet">
+        <link href="{{ url_for('static', filename='lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
+        <link href="{{ url_for('static', filename='lib/flaticon/font/flaticon.css') }}" rel="stylesheet">
+        <link href="{{ url_for('static', filename='lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css') }}" rel="stylesheet">
+        
+        <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+    </head>
+
+    <body>
+       <div class="navbar navbar-expand-lg bg-light navbar-light">
+        <div class="container-fluid">
+            <a href="index" class="navbar-brand">Restoran <span> </span></a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                <div class="navbar-nav ml-auto">
+                    <a href="index" class="nav-item nav-link ">Əsas Səhifə</a>
+                    <a href="team" class="nav-item nav-link active">Aşpazlar</a>
+                    <a href="menu" class="nav-item nav-link">Menyu</a>
+                    <a href="booking" class="nav-item nav-link">Rezervasiya</a>
+                    <a href="contact" class="nav-item nav-link">Əlaqə</a>
+                
+                    {% if session.get('user_id') %}
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+                                <img src="{{ url_for('static', filename='img/profile_icon.png') }}" alt="Profil" width="30" height="30" class="rounded-circle">
+                            </a>
+                            <div class="dropdown-menu">
+                                <a href="{{ url_for('profile') }}" class="dropdown-item">Profilim</a>
+                                <a href="{{ url_for('logout') }}" class="dropdown-item">Çıxış Et</a>
+                            </div>
+                        </div>
+                    {% else %}
+                        <a href="{{ url_for('login') }}" class="nav-item nav-link">Giriş Et</a>
+                        <a href="{{ url_for('register') }}" class="nav-item nav-link">Qeydiyyat</a>
+                    {% endif %}
+                </div>
+                
+            </div>
+        </div>
+    </div>
+        
+        <div class="page-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h2>Aşpazlar</h2>
+                    </div>
+                    <div class="col-12">
+                        <a href="">Əsas Səhifə</a>
+                        <a href="">Aşpazlar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+        <div class="team">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2>Mətbəximizin Sehrbazları</h2>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3 col-md-6">
+                        <div class="team-item">
+                            <div class="team-img">
+                                <img src="{{ url_for('static', filename='img/team-1.jpg') }}" alt="Image">
+                                <div class="team-social">
+                                    <a href=""><i class="fab fa-twitter"></i></a>
+                                    <a href=""><i class="fab fa-facebook-f"></i></a>
+                                    <a href=""><i class="fab fa-linkedin-in"></i></a>
+                                    <a href=""><i class="fab fa-instagram"></i></a>
+                                </div>
+                            </div>
+                            <div class="team-text">
+                                <h2>Adam Phillips</h2>
+                                <p>CEO, Co Founder</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="team-item">
+                            <div class="team-img">
+                                <img src="{{ url_for('static', filename='img/team-2.jpg') }}" alt="Image">
+                                <div class="team-social">
+                                    <a href=""><i class="fab fa-twitter"></i></a>
+                                    <a href=""><i class="fab fa-facebook-f"></i></a>
+                                    <a href=""><i class="fab fa-linkedin-in"></i></a>
+                                    <a href=""><i class="fab fa-instagram"></i></a>
+                                </div>
+                            </div>
+                            <div class="team-text">
+                                <h2>Dylan Adams</h2>
+                                <p>Master Chef</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="team-item">
+                            <div class="team-img">
+                                <img src="{{ url_for('static', filename='img/team-3.jpg') }}" alt="Image">
+                                <div class="team-social">
+                                    <a href=""><i class="fab fa-twitter"></i></a>
+                                    <a href=""><i class="fab fa-facebook-f"></i></a>
+                                    <a href=""><i class="fab fa-linkedin-in"></i></a>
+                                    <a href=""><i class="fab fa-instagram"></i></a>
+                                </div>
+                            </div>
+                            <div class="team-text">
+                                <h2>Jhon Doe</h2>
+                                <p>Master Chef</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="team-item">
+                            <div class="team-img">
+                                <img src="{{ url_for('static', filename='img/team-4.jpg') }}" alt="Image">
+                                <div class="team-social">
+                                    <a href=""><i class="fab fa-twitter"></i></a>
+                                    <a href=""><i class="fab fa-facebook-f"></i></a>
+                                    <a href=""><i class="fab fa-linkedin-in"></i></a>
+                                    <a href=""><i class="fab fa-instagram"></i></a>
+                                </div>
+                            </div>
+                            <div class="team-text">
+                                <h2>Josh Dunn</h2>
+                                <p>Master Chef</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="team-item">
+                            <div class="team-img">
+                                <img src="{{ url_for('static', filename='img/team-1.jpg') }}" alt="Image">
+                                <div class="team-social">
+                                    <a href=""><i class="fab fa-twitter"></i></a>
+                                    <a href=""><i class="fab fa-facebook-f"></i></a>
+                                    <a href=""><i class="fab fa-linkedin-in"></i></a>
+                                    <a href=""><i class="fab fa-instagram"></i></a>
+                                </div>
+                            </div>
+                            <div class="team-text">
+                                <h2>Adam Phillips</h2>
+                                <p>CEO, Co Founder</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="team-item">
+                            <div class="team-img">
+                                <img src="{{ url_for('static', filename='img/team-2.jpg') }}" alt="Image">
+                                <div class="team-social">
+                                    <a href=""><i class="fab fa-twitter"></i></a>
+                                    <a href=""><i class="fab fa-facebook-f"></i></a>
+                                    <a href=""><i class="fab fa-linkedin-in"></i></a>
+                                    <a href=""><i class="fab fa-instagram"></i></a>
+                                </div>
+                            </div>
+                            <div class="team-text">
+                                <h2>Dylan Adams</h2>
+                                <p>Master Chef</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="team-item">
+                            <div class="team-img">
+                                <img src="{{ url_for('static', filename='img/team-3.jpg') }}" alt="Image">
+                                <div class="team-social">
+                                    <a href=""><i class="fab fa-twitter"></i></a>
+                                    <a href=""><i class="fab fa-facebook-f"></i></a>
+                                    <a href=""><i class="fab fa-linkedin-in"></i></a>
+                                    <a href=""><i class="fab fa-instagram"></i></a>
+                                </div>
+                            </div>
+                            <div class="team-text">
+                                <h2>Jhon Doe</h2>
+                                <p>Master Chef</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="team-item">
+                            <div class="team-img">
+                                <img src="{{ url_for('static', filename='img/team-4.jpg') }}" alt="Image">
+                                <div class="team-social">
+                                    <a href=""><i class="fab fa-twitter"></i></a>
+                                    <a href=""><i class="fab fa-facebook-f"></i></a>
+                                    <a href=""><i class="fab fa-linkedin-in"></i></a>
+                                    <a href=""><i class="fab fa-instagram"></i></a>
+                                </div>
+                            </div>
+                            <div class="team-text">
+                                <h2>Josh Dunn</h2>
+                                <p>Master Chef</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <style>
+            .footer {
+        background-color: rgba(0, 0, 0, .04);
+        color: #454545;
+        padding: 50px 0;
+        text-align: left;
+    }
+    
+    .footer .container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    
+    .footer h2 {
+        font-size: 1.8em;
+        color: #fbaf32;
+        margin-bottom: 20px;
+    }
+    
+    .footer p, .footer a {
+        color: #fff;
+        font-size: 1.1em;
+        margin-bottom: 15px;
+    }
+    
+    .footer a {
+        display: block;
+        text-decoration: none;
+    }
+    
+    .footer .footer-social a {
+        font-size: 16px;
+        margin-right: 15px;
+        color: #fff;
+    }
+    
+    .footer .footer-social a:hover {
+        color: #fbaf32;
+    }
+    
+    .footer .footer-link a {
+        font-size: 16px;
+        color: #454545;
+        display: block;
+        text-decoration: none;
+    }
+    
+    .footer .footer-link a:hover {
+        color: #fbaf32;
+    }
+    
+    .footer .opening-hours ul {
+        list-style: none;
+        padding: 0;
+    }
+    
+    .footer .opening-hours ul li {
+        font-size: 1.2em;
+        margin-bottom: 10px;
+    }
+    
+    .footer .opening-hours .description {
+        font-size: 1.1em;
+        margin-bottom: 15px;
+    }
+    
+    .footer .opening-hours .closing-note {
+        font-size: 1.1em;
+        font-style: italic;
+    }
+    
+    @media (max-width: 991px) {
+        .footer .row {
+            flex-direction: column;
+        }
+        .footer .col-lg-7, .footer .col-lg-5 {
+            width: 100%;
+            margin-bottom: 30px;
+        }
+    }
+    
+           </style>
+            <div class="footer">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-7">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="footer-contact">
+                                        <h2>Ünvanımız</h2>
+                                        <p style="color: #454545;"><i class="fa fa-map-marker-alt"></i> 123 Street, New York, USA</p>
+                                        <p style="color: #454545;"><i class="fa fa-phone-alt" ></i> +012 345 67890</p>
+                                        <p style="color: #454545;"><i class="fa fa-envelope"></i> info@example.com</p>
+                                        <div class="footer-social">
+                                            <a href=""><i class="fab fa-twitter"></i></a>
+                                            <a href=""><i class="fab fa-facebook-f"></i></a>
+                                            <a href=""><i class="fab fa-youtube"></i></a>
+                                            <a href=""><i class="fab fa-instagram"></i></a>
+                                            <a href=""><i class="fab fa-linkedin-in"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+            
+                                <div class="col-md-6">
+                                    <div class="footer-link">
+                                        <h2>Cəld Keçidlər</h2>
+                                        <a href="team">Aşpazlar</a>
+                                        <a href="menu">Menyu</a>
+                                        <a href="bookings">Rezervasiya</a>
+                                        <a href="contact">Əlaqə</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <div class="col-lg-5">
+                            <div class="opening-hours">
+                                <h2>Xidmət Saatlarımız !</h2>
+                                <ul class="hours-list">
+                                    <li><strong>Bazar ertəsi - Cümə:</strong> 08:00  - 10:00 </li>
+                                    <li><strong>Şənbə:</strong> 10:00  - 12:00 </li>
+                                    <li><strong>Bazar:</strong> 10:00  - 12:00 </li>
+                                </ul>
+                            </div>
+                        </div>
+            
+                    </div>
+                </div>
+            </div>
+            
+                
+            </div>
+
+        <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+<script src="{{ url_for('static', filename='js/jquery-3.4.1.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ url_for('static', filename='lib/easing/easing.min.js') }}"></script>
+<script src="{{ url_for('static', filename='lib/owlcarousel/owl.carousel.min.js') }}"></script>
+<script src="{{ url_for('static', filename='lib/tempusdominus/js/moment.min.js') }}"></script>
+<script src="{{ url_for('static', filename='lib/tempusdominus/js/moment-timezone.min.js') }}"></script>
+<script src="{{ url_for('static', filename='lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+    </body>
+</html>

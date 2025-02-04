@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ödəniş</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4CAF50',
+                        secondary: '#2C3E50'
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen p-4">
+
+    <div class="w-full max-w-lg bg-white rounded-2xl shadow-xl p-8 transform transition duration-500 hover:scale-105">
+        
+        <div class="text-center mb-6">
+            <h2 class="text-3xl font-bold text-secondary">💳 Ödəniş Məlumatları</h2>
+            <p class="text-gray-500">Ödənişi etməzdən əvvəl məlumatlarınızı nəzərdən keçirin.            </p>
+        </div>
+
+        <div class="space-y-4 text-lg text-gray-800">
+            <div class="flex justify-between items-center">
+                <span class="font-medium"><i class="fas fa-user text-primary"></i> Adınız:</span>
+                <span>{{ rezervasyon.name }}</span>
+            </div>
+            <div class="flex justify-between items-center">
+                <span class="font-medium"><i class="fas fa-envelope text-primary"></i> E-poçt:</span>
+                <span>{{ rezervasyon.email }}</span>
+            </div>
+            <div class="flex justify-between items-center">
+                <span class="font-medium"><i class="fas fa-phone text-primary"></i> Telefon Nömrəniz:</span>
+                <span>{{ rezervasyon.mobile }}</span>
+            </div>
+            <div class="flex justify-between items-center">
+                <span class="font-medium"><i class="fas fa-calendar text-primary"></i> Tarix:</span>
+                <span>{{ rezervasyon.date }}</span>
+            </div>
+            <div class="flex justify-between items-center">
+                <span class="font-medium"><i class="fas fa-clock text-primary"></i> Zaman:</span>
+                <span>{{ rezervasyon.time }}</span>
+            </div>
+            <div class="flex justify-between items-center">
+                <span class="font-medium"><i class="fas fa-users text-primary"></i> Qonaq Sayı:</span>
+                <span>{{ rezervasyon.guest }}</span>
+            </div>
+            <div class="flex justify-between items-center">
+                <span class="font-medium"><i class="fas fa-dollar-sign text-primary"></i> Ödəniş Məbləği:</span>
+                <span class="text-green-600 font-bold">{{ rezervasyon.payment }} AZN</span>
+            </div>
+            <div class="flex justify-between items-center bg-gray-100 p-3 rounded-lg">
+                <span class="font-medium"><i class="fas fa-credit-card text-primary"></i> Kart Nömrəsi:</span>
+                <span class="text-gray-600 font-mono">{{ static_card }}</span>
+            </div>
+        </div>
+
+        <div class="mt-6 text-center">
+            <form method="POST">
+                <button type="submit" class="w-full bg-primary text-white py-3 px-4 rounded-lg font-semibold text-lg hover:bg-green-700 transition duration-300 shadow-md transform hover:scale-105">
+                    ✅ Ödənişi Təsdiqləyin
+                </button>
+            </form>
+        </div>
+        
+    </div>
+
+</body>
+</html>

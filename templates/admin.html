@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İdarəetmə Sistemi</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 font-sans text-gray-800">
+
+    <div class="bg-teal-600 text-white p-6 rounded-b-lg shadow-lg flex justify-between items-center">
+        <h2 class="text-4xl font-semibold mx-auto">İdarəetmə Sistemi</h2>
+        <a href="{{ url_for('admin_logout') }}" class="px-6 py-3 bg-red-600 text-white rounded-full shadow-md hover:bg-red-700 transition duration-200">
+            Çıxış
+        </a>
+    </div>
+
+    <div class="container mx-auto mt-8 px-4">
+        <div class="overflow-x-auto bg-white shadow-2xl rounded-lg">
+            <table class="min-w-full text-sm text-left text-gray-600">
+                <thead class="bg-teal-700 text-white">
+                    <tr>
+                        <th class="px-6 py-3">Ad</th>
+                        <th class="px-6 py-3">E-poçt</th>
+                        <th class="px-6 py-3">Telefon Nömrəsi</th>
+                        <th class="px-6 py-3">Tarix</th>
+                        <th class="px-6 py-3">Zaman</th>
+                        <th class="px-6 py-3">Qonaq Sayı</th>
+                        <th class="px-6 py-3">Məbləğ</th>
+                        <th class="px-6 py-3">Status</th>
+                        <th class="px-6 py-3">Seçim</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for rezervasyon in rezervasyonlar %}
+                    <tr class="border-b hover:bg-gray-50 transition duration-300">
+                        <td class="px-6 py-4">{{ rezervasyon.name }}</td>
+                        <td class="px-6 py-4">{{ rezervasyon.email }}</td>
+                        <td class="px-6 py-4">{{ rezervasyon.mobile }}</td>
+                        <td class="px-6 py-4">{{ rezervasyon.date }}</td>
+                        <td class="px-6 py-4">{{ rezervasyon.time }}</td>
+                        <td class="px-6 py-4">{{ rezervasyon.guest }}</td>
+                        <td class="px-6 py-4">{{ rezervasyon.payment }} AZN</td>
+                        <td class="px-6 py-4">
+                            <span class="inline-block px-4 py-2 rounded-lg 
+                            {% if rezervasyon.status == 'Onaylandı' %} bg-green-500 text-white
+                            {% elif rezervasyon.status == 'Reddedildi' %} bg-red-500 text-white
+                            {% elif rezervasyon.status == 'Beklemede' %} bg-yellow-500 text-white
+                            {% else %} bg-gray-500 text-white {% endif %}">
+                                {% if rezervasyon.status == 'Onaylandı' %} Təsdiqləndi
+                                {% elif rezervasyon.status == 'Reddedildi' %} Təsdiqlənmədi
+                                {% elif rezervasyon.status == 'Beklemede' %} Gözləmədə
+                                {% else %} {{ rezervasyon.status }} {% endif %}
+                            </span>
+                        </td>
+                        <td class="px-6 py-4 space-x-2">
+                            <a href="{{ url_for('approve', id=rezervasyon.id) }}" class="inline-block px-4 py-2 bg-green-500 text-white rounded-lg shadow-md hover:bg-green-600 transition duration-200">Təsdiqlə</a>
+                            <a href="{{ url_for('reject', id=rezervasyon.id) }}" class="inline-block px-4 py-2 bg-red-500 text-white rounded-lg shadow-md hover:bg-red-600 transition duration-200">Ləğv Et</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="container mx-auto text-center mt-12 mb-6">
+        <p class="text-gray-600">
+            Əlaqə formundan gələn mesajları görmək və idarə etmək üçün 
+            <a href="{{ url_for('admin_contact') }}" class="text-teal-600 font-semibold hover:underline">İdarəetmə Sistemi Mesajları</a> səhifəsinə keçid edin.
+        </p>
+    </div>
+
+</body>
+</html>

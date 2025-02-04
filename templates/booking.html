@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Restoran</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="Free Website Template" name="keywords">
+        <meta content="Free Website Template" name="description">
+
+<link href="{{ url_for('static', filename='img/favicon.ico') }}" rel="icon">
+
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400|Nunito:600,700" rel="stylesheet"> 
+
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+<link href="{{ url_for('static', filename='lib/animate/animate.min.css') }}" rel="stylesheet">
+<link href="{{ url_for('static', filename='lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
+<link href="{{ url_for('static', filename='lib/flaticon/font/flaticon.css') }}" rel="stylesheet">
+<link href="{{ url_for('static', filename='lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css') }}" rel="stylesheet" />
+
+        <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+    </head>
+
+    <body>
+        <div class="navbar navbar-expand-lg bg-light navbar-light">
+            <div class="container-fluid">
+                <a href="index" class="navbar-brand">Restoran <span> </span></a>
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+    
+                <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                    <div class="navbar-nav ml-auto">
+                        <a href="index" class="nav-item nav-link ">Əsas Səhifə</a>
+                        <a href="team" class="nav-item nav-link ">Aşpazlar</a>
+                        <a href="menu" class="nav-item nav-link">Menyu</a>
+                        <a href="booking" class="nav-item nav-link active">Rezervasiya</a>
+                        <a href="contact" class="nav-item nav-link">Əlaqə</a>
+                    
+                    
+                        {% if session.get('user_id') %}
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+                                    <img src="{{ url_for('static', filename='img/profile_icon.png') }}" alt="Profil" width="30" height="30" class="rounded-circle">
+                                </a>
+                                <div class="dropdown-menu">
+                                    <a href="{{ url_for('profile') }}" class="dropdown-item">Profilim</a>
+                                    <a href="{{ url_for('logout') }}" class="dropdown-item">Çıxış Et</a>
+                                </div>
+                            </div>
+                        {% else %}
+                            <a href="{{ url_for('login') }}" class="nav-item nav-link">Giriş Et</a>
+                            <a href="{{ url_for('register') }}" class="nav-item nav-link">Qeydiyyat</a>
+                        {% endif %}
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+      
+        <div class="page-header mb-0">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h2>Rezervasiya Et</h2>
+                    </div>
+                    <div class="col-12">
+                        <a href="">Əsas Səhifə</a>
+                        <a href="">Rezervasiya</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+            <div class="booking">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-lg-7">
+                            <div class="booking-content">
+                                <div class="section-header">
+                                    <p>Rezervasiya Et</p>
+                                    <h2>Özəl şam yeməkləri və xoş saatlar üçün masanızı indi ayırın!                                    </h2>
+                                </div>
+                                <div class="about-text">
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec pretium mi. Curabitur facilisis ornare velit non vulputate. Aliquam metus tortor, auctor id gravida condimentum, viverra quis sem.
+                                    </p>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec pretium mi. Curabitur facilisis ornare velit non vulputate. Aliquam metus tortor, auctor id gravida condimentum, viverra quis sem. Curabitur non nisl nec nisi scelerisque maximus. Aenean consectetur convallis porttitor. Aliquam interdum at lacus non blandit.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-5">
+                            <div class="booking-form">
+                             
+                                <form method="POST" action="/booking">
+                                        
+                                    <div class="control-group">
+                                        <div class="input-group date" id="date" data-target-input="nearest">
+                                            <input type="text" class="form-control datetimepicker-input" name="date" placeholder="Tarix" data-target="#date" data-toggle="datetimepicker"/>
+                                            <div class="input-group-append" data-target="#date" data-toggle="datetimepicker">
+                                                <div class="input-group-text"><i class="far fa-calendar-alt"></i></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <input type="time" class="form-control" name="time" placeholder="Time (08:00 - 23:00)" min="08:00" max="23:00"/>
+                                    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/5.1.0/js/bootstrap-datetimepicker.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+                                    <script>
+                                        $(document).ready(function () {
+                                            $('#date').datetimepicker({
+                                                format: 'DD/MM/YYYY',  
+                                                minDate: new Date()   
+                                            });
+                                        });
+                                    </script>
+                                    <div class="control-group">
+                                        <div class="input-group">
+                                            <select class="custom-select form-control" name="guest">
+                                                <option value="" disabled selected>Qonaq Sayı</option> 
+                                                <option value="1" style="color: black;">1 Qonaq</option>
+                                                <option value="2" style="color: black;">2 Qonaq</option>
+                                                <option value="3" style="color: black;">3 Qonaq</option>
+                                                <option value="4" style="color: black;">4 Qonaq</option>
+                                                <option value="5" style="color: black;">5 Qonaq</option>
+                                                <option value="6" style="color: black;">6 Qonaq</option>
+                                                <option value="7" style="color: black;">7 Qonaq</option>
+                                                <option value="8" style="color: black;">8 Qonaq</option>
+                                                <option value="9" style="color: black;">9 Qonaq</option>
+                                                <option value="10" style="color: black;">10 Qonaq</option>
+                                            </select>
+                                            
+                                            <div class="input-group-append">
+                                                <div class="input-group-text"><i class="fa fa-chevron-down"></i></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <button class="btn custom-btn" type="submit">Rezervasiya Et</button>
+                                    </div>
+                                </form>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <div class="menu">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2>Menyumuz
+
+
+
+
+
+
+
+
+                    </h2>
+                </div>
+                <div class="menu-tab">
+                    <ul class="nav nav-pills justify-content-center">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="pill" href="#burgers">Burgerlər</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="pill" href="#snacks">Qəlyanaltılar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="pill" href="#beverages">İçkilər</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="burgers" class="container tab-pane active">
+                            <div class="row">
+                                <div class="col-lg-7 col-md-12">
+                                    <div class="menu-item">
+                                        <div class="menu-img">
+                                            <img src="{{ url_for('static', filename='img/menu-burger.jpg') }}" alt="Image">
+                                        </div>
+                                        <div class="menu-text">
+                                            <h3><span>Mini cheese Burger</span> <strong>$9.00</strong></h3>
+                                            <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
+                                        </div>
+                                    </div>
+                                    <div class="menu-item">
+                                        <div class="menu-img">
+                                            <img src="{{ url_for('static', filename='img/menu-burger.jpg') }}" alt="Image">
+                                        </div>
+                                        <div class="menu-text">
+                                            <h3><span>Double size burger</span> <strong>$11.00</strong></h3>
+                                            <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
+                                        </div>
+                                    </div>
+                                    <div class="menu-item">
+                                        <div class="menu-img">
+                                            <img src="{{ url_for('static', filename='img/menu-burger.jpg') }}" alt="Image">
+                                        </div>
+                                        <div class="menu-text">
+                                            <h3><span>Bacon, EGG and Cheese</span> <strong>$13.00</strong></h3>
+                                            <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
+                                        </div>
+                                    </div>
+                                    <div class="menu-item">
+                                        <div class="menu-img">
+                                            <img src="{{ url_for('static', filename='img/menu-burger.jpg') }}" alt="Image">
+                                        </div>
+                                        <div class="menu-text">
+                                            <h3><span>Pulled porx Burger</span> <strong>$18.00</strong></h3>
+                                            <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
+                                        </div>
+                                    </div>
+                                    <div class="menu-item">
+                                        <div class="menu-img">
+                                            <img src="{{ url_for('static', filename='img/menu-burger.jpg') }}" alt="Image">
+                                        </div>
+                                        <div class="menu-text">
+                                            <h3><span>Fried chicken Burger</span> <strong>$22.00</strong></h3>
+                                            <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-5 d-none d-lg-block">
+                                    <img src="{{ url_for('static', filename='img/menu-burger-img.jpg') }}" alt="Image">
+                                </div>
+                            </div>
+                        </div>
+                        <div id="snacks" class="container tab-pane fade">
+                            <div class="row">
+                                <div class="col-lg-7 col-md-12">
+                                    <div class="menu-item">
+                                        <div class="menu-img">
+                                            <img src="{{ url_for('static', filename='img/menu-snack.jpg') }}" alt="Image">
+                                        </div>
+                                        <div class="menu-text">
+                                            <h3><span>Corn Tikki - Spicy fried Aloo</span> <strong>$15.00</strong></h3>
+                                            <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
+                                        </div>
+                                    </div>
+                                    <div class="menu-item">
+                                        <div class="menu-img">
+                                            <img src="{{ url_for('static', filename='img/menu-snack.jpg') }}" alt="Image">
+                                        </div>
+                                        <div class="menu-text">
+                                            <h3><span>Bread besan Toast</span> <strong>$35.00</strong></h3>
+                                            <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
+                                        </div>
+                                    </div>
+                                    <div class="menu-item">
+                                        <div class="menu-img">
+                                            <img src="{{ url_for('static', filename='img/menu-snack.jpg') }}" alt="Image">
+                                        </div>
+                                        <div class="menu-text">
+                                            <h3><span>Healthy soya nugget snacks</span> <strong>$20.00</strong></h3>
+                                            <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
+                                        </div>
+                                    </div>
+                                    <div class="menu-item">
+                                        <div class="menu-img">
+                                            <img src="{{ url_for('static', filename='img/menu-snack.jpg') }}" alt="Image">
+                                        </div>
+                                        <div class="menu-text">
+                                            <h3><span>Tandoori Soya Chunks</span> <strong>$30.00</strong></h3>
+                                            <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-5 d-none d-lg-block">
+                                    <img src="{{ url_for('static', filename='img/menu-snack-img.jpg') }}" alt="Image">
+                                </div>
+                            </div>
+                        </div>
+                        <div id="beverages" class="container tab-pane fade">
+                            <div class="row">
+                                <div class="col-lg-7 col-md-12">
+                                    <div class="menu-item">
+                                        <div class="menu-img">
+                                            <img src="{{ url_for('static', filename='img/menu-beverage.jpg') }}" alt="Image">
+                                        </div>
+                                        <div class="menu-text">
+                                            <h3><span>Single Cup Brew</span> <strong>$7.00</strong></h3>
+                                            <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
+                                        </div>
+                                    </div>
+                                    <div class="menu-item">
+                                        <div class="menu-img">
+                                            <img src="{{ url_for('static', filename='img/menu-beverage.jpg') }}" alt="Image">
+                                        </div>
+                                        <div class="menu-text">
+                                            <h3><span>Caffe Americano</span> <strong>$9.00</strong></h3>
+                                            <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
+                                        </div>
+                                    </div>
+                                    <div class="menu-item">
+                                        <div class="menu-img">
+                                            <img src="{{ url_for('static', filename='img/menu-beverage.jpg') }}" alt="Image">
+                                        </div>
+                                        <div class="menu-text">
+                                            <h3><span>Caramel Macchiato</span> <strong>$15.00</strong></h3>
+                                            <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
+                                        </div>
+                                    </div>
+                                    <div class="menu-item">
+                                        <div class="menu-img">
+                                            <img src="{{ url_for('static', filename='img/menu-beverage.jpg') }}" alt="Image">
+                                        </div>
+                                        <div class="menu-text">
+                                            <h3><span>Standard black coffee</span> <strong>$8.00</strong></h3>
+                                            <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
+                                        </div>
+                                    </div>
+                                    <div class="menu-item">
+                                        <div class="menu-img">
+                                            <img src="{{ url_for('static', filename='img/menu-beverage.jpg') }}" alt="Image">
+                                        </div>
+                                        <div class="menu-text">
+                                            <h3><span>Standard black coffee</span> <strong>$12.00</strong></h3>
+                                            <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-5 d-none d-lg-block">
+                                    <img src="{{ url_for('static', filename='img/menu-beverage.jpg') }}" alt="Image">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+       <style>
+        .footer {
+    background-color: rgba(0, 0, 0, .04);
+    color: #454545;
+    padding: 50px 0;
+    text-align: left;
+}
+
+.footer .container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer h2 {
+    font-size: 1.8em;
+    color: #fbaf32;
+    margin-bottom: 20px;
+}
+
+.footer p, .footer a {
+    color: #fff;
+    font-size: 1.1em;
+    margin-bottom: 15px;
+}
+
+.footer a {
+    display: block;
+    text-decoration: none;
+}
+
+.footer .footer-social a {
+    font-size: 16px;
+    margin-right: 15px;
+    color: #fff;
+}
+
+.footer .footer-social a:hover {
+    color: #fbaf32;
+}
+
+.footer .footer-link a {
+    font-size: 16px;
+    color: #454545;
+    display: block;
+    text-decoration: none;
+}
+
+.footer .footer-link a:hover {
+    color: #fbaf32;
+}
+
+.footer .opening-hours ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer .opening-hours ul li {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.footer .opening-hours .description {
+    font-size: 1.1em;
+    margin-bottom: 15px;
+}
+
+.footer .opening-hours .closing-note {
+    font-size: 1.1em;
+    font-style: italic;
+}
+
+@media (max-width: 991px) {
+    .footer .row {
+        flex-direction: column;
+    }
+    .footer .col-lg-7, .footer .col-lg-5 {
+        width: 100%;
+        margin-bottom: 30px;
+    }
+}
+
+       </style>
+        <div class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-7">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="footer-contact">
+                                    <h2>Ünvanımız</h2>
+                                    <p style="color: #454545;"><i class="fa fa-map-marker-alt"></i> 123 Street, New York, USA</p>
+                                    <p style="color: #454545;"><i class="fa fa-phone-alt" ></i> +012 345 67890</p>
+                                    <p style="color: #454545;"><i class="fa fa-envelope"></i> info@example.com</p>
+                                    <div class="footer-social">
+                                        <a href=""><i class="fab fa-twitter"></i></a>
+                                        <a href=""><i class="fab fa-facebook-f"></i></a>
+                                        <a href=""><i class="fab fa-youtube"></i></a>
+                                        <a href=""><i class="fab fa-instagram"></i></a>
+                                        <a href=""><i class="fab fa-linkedin-in"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+        
+                            <div class="col-md-6">
+                                <div class="footer-link">
+                                    <h2>Cəld Keçidlər</h2>
+                                    <a href="team">Aşpazlar</a>
+                                    <a href="menu">Menyu</a>
+                                    <a href="booking">Rezervasiya</a>
+                                    <a href="contact">Əlaqə</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <div class="col-lg-5">
+                        <div class="opening-hours">
+                            <h2>Xidmət Saatlarımız !</h2>
+                            <ul class="hours-list">
+                                <li><strong>Bazar ertəsi - Cümə:</strong> 08:00  - 10:00 </li>
+                                <li><strong>Şənbə:</strong> 10:00  - 12:00 </li>
+                                <li><strong>Bazar:</strong> 10:00  - 12:00 </li>
+                            </ul>
+                        </div>
+                    </div>
+        
+                </div>
+            </div>
+        </div>
+        
+            
+        </div>
+
+        <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+        <script src="{{ url_for('static', filename='js/jquery-3.4.1.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='lib/easing/easing.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='lib/owlcarousel/owl.carousel.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='lib/tempusdominus/js/moment.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='lib/tempusdominus/js/moment-timezone.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js') }}"></script>
+        
+        <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+        
+    </body>
+</html>
