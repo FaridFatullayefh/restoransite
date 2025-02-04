@@ -3,6 +3,7 @@ A website for a restaurant that offers user registration, login, reservation, pr
 
 
 admin username: admin
+----------------------
 admin password: admin
 
 Note: For security reasons, app.py has been obfuscated.
